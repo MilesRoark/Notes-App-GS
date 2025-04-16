@@ -5,6 +5,38 @@
   box-sizing: border-box;
 }
 
+.weather-time-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: right;
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#current-time {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+#weather-info {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#weather-info img {
+  width: 30px;
+  margin-left: 8px;
+}
+
 .container {
   width: 100%;
   min-height: 100vh;
@@ -84,10 +116,59 @@
 
 .input-box {
   transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 30px; /* Make space for the timestamp */
+}
+
+.note-timestamp {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 0.7rem;
+  color: #888;
+  font-style: italic;
+  pointer-events: none; /* Prevent interaction with timestamp */
+  user-select: none; /* Prevent selection of timestamp */
+}
+
+/* Adjust timestamp in shrunk notes */
+.input-box.shrunk .note-timestamp {
+  display: none; /* Hide timestamp in shrunk notes */
 }
 
 @media screen and (max-width: 560px) {
   .container {
     padding: 10px;
+    padding-top: 60px; /* Add space for the weather-time container */
+  }
+
+  .weather-time-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+  }
+
+  #current-time {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  #weather-info {
+    font-size: 0.8rem;
+  }
+
+  #weather-info img {
+    width: 24px;
   }
 }
